@@ -1,0 +1,57 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:model="clr-namespace:Payments.Model">
+
+    <DataTemplate x:Key="AllWalletsTemplate">
+        <TextBlock Text="Все кошельки"></TextBlock>
+    </DataTemplate>
+
+    <DataTemplate x:Key="AllCategoriesTemplate">
+        <TextBlock Text="(Все категории)"></TextBlock>
+    </DataTemplate>
+
+    <DataTemplate x:Key="CreateCategoryTemplate">
+        <TextBlock Text="(Создать категорию)"></TextBlock>
+    </DataTemplate>
+
+    <DataTemplate x:Key="CategoryTemplate">
+        <TextBlock Text="{Binding Item.Name}"></TextBlock>
+    </DataTemplate>
+
+    <DataTemplate x:Key="SimpleCategoryTemplate">
+        <TextBlock Text="{Binding Name}"></TextBlock>
+    </DataTemplate>
+
+    <DataTemplate x:Key="SimpleWalletTemplate">
+        <TextBlock Text="{Binding Name}"></TextBlock>
+    </DataTemplate>
+
+    <DataTemplate x:Key="WalletTemplate" DataType="model:Wallet">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="{Binding Item.Name}"></TextBlock>
+            <TextBlock Grid.Column="2" Margin="5 0 0 0" Text="{Binding Item.Balance}"></TextBlock>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="PaymentTemplate" DataType="model:Payment">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="1" Text="{Binding DateString}"></TextBlock>
+            <TextBlock Grid.Column="2" Margin="5 0 0 0" Text="{Binding Name}"></TextBlock>
+            <TextBlock Grid.Column="3" Margin="5 0 0 0" Text="{Binding Amount}"></TextBlock>
+        </Grid>
+    </DataTemplate>
+
+</ResourceDictionary> 

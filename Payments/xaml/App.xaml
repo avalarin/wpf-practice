@@ -1,0 +1,17 @@
+﻿<Application x:Class="Payments.xaml.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:xaml="clr-namespace:Payments.xaml"
+             StartupUri="windows\MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="resources/styles/Window.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="resources/styles/Buttons.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="resources/DataTemplates.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="resources/GlobalCommands.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
+

@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="Window">
+        <Setter Property="Padding" Value="5"></Setter>
+    </Style>
+
+    <Style TargetType="TextBox">
+        <Setter Property="Height" Value="26"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+    </Style>
+
+    <Style TargetType="DatePicker">
+        <Setter Property="Height" Value="26"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+    </Style>
+
+    <Style TargetType="ComboBox">
+        <Setter Property="Height" Value="26"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+    </Style>
+</ResourceDictionary>

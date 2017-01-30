@@ -1,0 +1,69 @@
+﻿<Window x:Class="Payments.xaml.windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:adapters="clr-namespace:Payments.Adapters"
+        xmlns:viewModel="clr-namespace:Payments.ViewModel"
+        Title="Payments" Height="400" Width="800" 
+        DataContext="{Binding Source={adapters:Resolve viewModel:CurrentBookViewModel}}">
+    <Window.Resources>
+        <adapters:ModelWrapperTemplateSelector x:Key="WalletTemplateSelector" 
+                NoItemTemplate="{StaticResource AllWalletsTemplate}"
+                ItemTemplate="{StaticResource WalletTemplate}"/>
+
+        <adapters:ModelWrapperTemplateSelector x:Key="CategoryTemplateSelector" 
+                NoItemTemplate="{StaticResource AllCategoriesTemplate}"
+                CreateItemTemplate="{StaticResource CreateCategoryTemplate}"
+                ItemTemplate="{StaticResource CategoryTemplate}"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0" Grid.Column="0">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Создать" Command="{Binding Path=CreateBookCommand}"></MenuItem>
+                <MenuItem Header="Открыть" Command="{Binding Path=OpenBookCommand}"></MenuItem>
+                <Separator />
+                <MenuItem Header="Выход" Command="{StaticResource ExitCommand}"></MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <Grid Grid.Row="1" Grid.Column="0" Margin="5" IsEnabled="{Binding Path=HasBook}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Margin="3">
+                <Button Style="{StaticResource ToolButton}" Command="{Binding Path=CreateWalletCommand}">Новый кошелек</Button>
+            </StackPanel>
+
+            <ListView Grid.Row="1" Grid.Column="0" Margin="3" 
+                      HorizontalContentAlignment="Stretch"
+                      ItemsSource="{Binding Path=Wallets}"
+                      SelectedItem="{Binding Path=CurrentWallet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      ItemTemplateSelector="{StaticResource WalletTemplateSelector}" />
+            
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" Margin="3">
+                <Button Style="{StaticResource ToolButton}" Command="{Binding Path=CreatePaymentCommand}">Новый платеж</Button>
+                <ComboBox Margin="5 0 0 0" Style="{StaticResource {x:Type ComboBox}}" MinWidth="175" 
+                          SelectedItem="{Binding Path=CurrentCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          ItemsSource="{Binding Path=Categories}" 
+                          ItemTemplateSelector="{StaticResource CategoryTemplateSelector}" />
+            </StackPanel>
+
+            <ListView Grid.Row="1" Grid.Column="2" Margin="3"
+                      HorizontalContentAlignment="Stretch"
+                      ItemsSource="{Binding Path=CurrentWalletPayments}"
+                      ItemTemplate="{StaticResource PaymentTemplate}"></ListView>
+        </Grid>
+
+    </Grid>
+</Window>
